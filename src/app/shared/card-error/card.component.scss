@@ -1,0 +1,14 @@
+.card {
+  margin: 5px;
+  padding: 5px;
+}
+
+.card.card-success {
+  background-color: chartreuse;
+  color: black;
+}
+
+.card.card-error {
+  background-color: crimson;
+  color: black;
+}

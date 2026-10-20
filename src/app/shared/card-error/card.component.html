@@ -1,0 +1,26 @@
+@if (type() === 'error') {
+<div class="card card-error">
+  <div class="card-title">{{ title() }}</div>
+  <div class="card-body">
+    <p>
+      {{ description() }}
+    </p>
+  </div>
+</div>
+}@else{
+<div class="card card-success">
+  <div class="card-title">{{ title() }}</div>
+  <div class="card-body">
+    <p>
+      <span>Numero: {{ solResponse()?.numero }}</span>
+    </p>
+    <p>
+      <span>Cliente: {{ solResponse()?.clienteId }}</span>
+    </p>
+    <p>
+      <span>Estado: {{ solResponse()?.estado }}</span>
+    </p>
+  </div>
+</div>
+
+}

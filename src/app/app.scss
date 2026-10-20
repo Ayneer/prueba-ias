@@ -1,0 +1,28 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+tbody tr {
+  cursor: pointer;
+}
+
+tbody tr:hover {
+  background-color: #cce5ed;
+}
+
+tbody tr.selected {
+  background-color: #cce5ff;
+}
+
+.disabled-table {
+  pointer-events: none;
+  opacity: 0.5;
+}
