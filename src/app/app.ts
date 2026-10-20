@@ -22,6 +22,7 @@ export class App {
   errorMessage = signal<string | null>(null);
   errorLocation = signal<'search' | 'register' | null>(null);
   bancoService = inject(BancoSimulado);
+  private searchId = 0;
 
   form = this._formBuilder.group({
     search: ['', [Validators.required, Validators.minLength(3)]],
@@ -40,17 +41,25 @@ export class App {
       this.clearError();
       this.loading.set(true);
       this.clientSelected.set(null);
+      this.searchId++;
+      const currentSearchId = this.searchId;
       this.bancoService
         .buscar(this.form.value.search ?? '')
         .then((clients: Cliente[]) => {
-          this.clients.set(clients);
+          if (this.searchId === currentSearchId) {
+            this.clients.set(clients);
+          }
         })
         .catch((err) => {
-          this.errorMessage.set(AppUtils.getErrorDescriptionByErrorBanco(err));
-          this.errorLocation.set('search');
+          if (this.searchId === currentSearchId) {
+            this.errorMessage.set(AppUtils.getErrorDescriptionByErrorBanco(err));
+            this.errorLocation.set('search');
+          }
         })
         .finally(() => {
-          this.loading.set(false);
+          if (this.searchId === currentSearchId) {
+            this.loading.set(false);
+          }
         });
     }
   }
